@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+ "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+ "http://struts.apache.org/dtds/struts-2.1.dtd">
+ <struts>
+ 	<constant name="struts.i18n.encoding" value="gb2312"></constant> 
+	<package name="struts2" extends="json-default">
+		<action name="getIndexSubject" class="com.test.action.GetIndexSubject">
+			<result name="success"  type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="getMainSubject" class="com.test.action.GetMainSubject">
+			<result name="success" type="json">
+				<param name="root">allsubject</param>
+			</result>
+		</action>
+		 
+		<action name="submitExam" class="com.test.action.SubmitExam">
+			<result name="success" type="json">
+				<param name="root">session</param>
+			</result>
+		</action>
+	</package>	
+ </struts>

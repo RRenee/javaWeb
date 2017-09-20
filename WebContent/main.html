@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>求职准备测试</title>
+	<link rel="shortcut icon" href="images/title.ico" type="image/x-ico"/>  
+	<!-- CSS includes -->
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/theme.css" rel="stylesheet">
+    <link href="css/bootstrap-slider.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<script src="js/jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script type='text/javascript' src="js/bootstrap-slider.js"></script>
+	<script type='text/javascript' src="js/vue.js"></script>
+	<script type='text/javascript' src="js/jquery.base64.js"></script>
+
+	<style type="text/css">
+		.slider-selection {
+		    background: #B24155;
+		}
+		.slider-handle{
+			background: #B24155;
+		}
+		span{
+			font-size: 10px;
+			padding: 5px;
+		}
+		[v-cloak] {
+		  display: none;
+		}
+	</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<a href="index.html" title="求职准备度测试">
+                <img class="img-responsive" src="images/logo01.jpg" alt="求职准备度测试"/>
+            </a>
+		</div>
+	</div><!-- /.container-fluid -->
+</nav>
+<!--main-->
+<div class="container-home">
+    <div class="container">
+		<div class="row">
+			<!-- 第一阶段 -->
+			<div class="col-sm-12" id="step1"  v-cloak>
+				<h2 class="text-danger">
+					第二部分：分项测评
+				</h2>
+				<h4 class="text-danger">
+					<!-- 1.知识、能力、素质准备 -->
+					（一）{{sub_class}}
+				</h4>
+				<div class="col-sm-12" v-for="item in subjects" track-by='$index' >
+					<p class="text-justify" >
+						<!-- （1）你掌握专业知识的程度。 -->
+						({{ $index+1 }}) {{item.subject_title}}
+					</p>
+					<p><span>特别糟</span><input class="slider_1" v-model="item.score" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="10" data-slider-value="60"/><span>非常好</span></p>
+					<!-- <span id="sliderVal">{{item.score}}</span> -->
+					<br/>
+				</div>
+				<a class="btn btn-success btn-sm" href="index.jsp">进入上一部分</a>	
+				<button class="btn btn-success btn-sm" type="button" onclick="nextStep(this)">进入下一阶段</button>
+			</div>
+			<!-- 第二阶段 -->
+			<div class="col-sm-12" id="step2" style="display:none"  v-cloak>
+				<h2 class="text-danger">
+					第二部分：分项测评
+				</h2>
+				<h4 class="text-danger">
+					（二）{{sub_class}}
+				</h4>
+				<div class="col-sm-12" v-for="item in subjects"  track-by='$index'>
+					<p class="text-justify" >
+						({{ $index+1 }}) {{item.subject_title}}
+					</p>
+					<p><span>特别糟</span><input class="slider_2" v-model="item.score" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="10" data-slider-value="60"/><span>非常好</span></p>
+					<!-- <span id="sliderVal">{{item.score}}</span> -->
+					<br/>
+				</div>	
+				<button class="btn btn-success btn-sm" type="button" onclick="previousStep(this)">进入上一阶段</button>
+				<button class="btn btn-success btn-sm" type="button" onclick="nextStep(this)">进入下一阶段</button>
+			</div>
+			
+			<!-- 第三阶段 -->
+			<div class="col-sm-12" id="step3" style="display:none"  v-cloak>
+				<h2 class="text-danger">
+					第二部分：分项测评
+				</h2>
+				<h4 class="text-danger">
+					（三）{{sub_class}}
+				</h4>
+				<div class="col-sm-12" v-for="item in subjects"  track-by='$index'>
+					<p class="text-justify" >
+						({{ $index+1 }}) {{item.subject_title}}
+					</p>
+					<p><span>特别糟</span><input class="slider_3" v-model="item.score" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="10" data-slider-value="60"/><span>非常好</span></p>
+					<!-- <span id="sliderVal">{{item.score}}</span> -->
+					<br/>
+				</div>	
+				<button class="btn btn-success btn-sm" type="button" onclick="previousStep(this)">进入上一阶段</button>
+				<button class="btn btn-success btn-sm" type="button" onclick="nextStep(this)">进入下一阶段</button>
+			</div>
+			
+			<!-- 第四阶段 -->
+			<div class="col-sm-12" id="step4" style="display:none"  v-cloak>
+				<h2 class="text-danger">
+					第二部分：分项测评
+				</h2>
+				<h4 class="text-danger">
+					（四）{{sub_class}}
+				</h4>
+				<div class="col-sm-12" v-for="item in subjects"  track-by='$index'>
+					<p class="text-justify" >
+						({{ $index+1 }}) {{item.subject_title}}
+					</p>
+					<p><span>特别糟</span><input class="slider_4" v-model="item.score" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="10" data-slider-value="60"/><span>非常好</span></p>
+					<!-- <span id="sliderVal">{{item.score}}</span> -->
+					<br/>
+				</div>	
+				<button class="btn btn-success btn-sm" type="button" onclick="previousStep(this)">进入上一阶段</button>
+				<button class="btn btn-success btn-sm" type="button" onclick="nextStep(this)">进入下一阶段</button>
+			</div>
+			
+			<!-- 第五阶段 -->
+			<div class="col-sm-12" id="step5" style="display:none"  v-cloak>
+				<h2 class="text-danger">
+					第二部分：分项测评
+				</h2>
+				<h4 class="text-danger">
+					（五）{{sub_class}}
+				</h4>
+				<div class="col-sm-12" v-for="item in subjects"  track-by='$index'>
+					<p class="text-justify" >
+						({{ $index+1 }}) {{item.subject_title}}
+					</p>
+					<p><span>特别糟</span><input class="slider_5" v-model="item.score" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="10" data-slider-value="60"/><span>非常好</span></p>
+					<!-- <span id="sliderVal">{{item.score}}</span> -->
+					<br/>
+				</div>	
+				<button class="btn btn-success btn-sm" type="button" onclick="previousStep(this)">进入上一阶段</button>
+				<button class="btn btn-success btn-sm" type="button" onclick="nextStep(this)">进入下一阶段</button>
+			</div>
+			
+			<!-- 第六阶段 -->
+			<div class="col-sm-12" id="step6" style="display:none"  v-cloak>
+				<h2 class="text-danger">
+					第二部分：分项测评
+				</h2>
+				<h4 class="text-danger">
+					（六）{{sub_class}}
+				</h4>
+				<div class="col-sm-12" v-for="item in subjects"  track-by='$index'>
+					<p class="text-justify" >
+						({{ $index+1 }}) {{item.subject_title}}
+					</p>
+					<p><span>特别糟</span><input class="slider_6" v-model="item.score" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="10" data-slider-value="60"/><span>非常好</span></p>
+					<!-- <span id="sliderVal">{{item.score}}</span> -->
+					<br/>
+				</div>	
+				<button class="btn btn-success btn-sm" type="button" onclick="previousStep(this)">进入上一阶段</button>
+				<button class="btn btn-success btn-sm" type="button" onclick="nextStep(this)">进入下一阶段</button>
+			</div>
+			
+			<!-- 最后阶段 -->
+			<div class="col-sm-12" id="step7" style="display:none"  v-cloak>
+				<h2 class="text-danger">
+					第二部分：分项测评
+				</h2>
+				<h4 class="text-danger">
+					（七）{{sub_class}}
+				</h4>
+				<div class="col-sm-12" v-for="item in subjects"  track-by='$index'>
+					<p class="text-justify" >
+						({{ $index+1 }}) {{item.subject_title}}
+					</p>
+					<p><span>特别糟</span><input class="slider_7" v-model="item.score" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="10" data-slider-value="60"/><span>非常好</span></p>
+					<!-- <span id="sliderVal">{{item.score}}</span> -->
+					<br/>
+				</div>	
+				<button class="btn btn-success btn-sm" type="button" onclick="previousStep(this)">进入上一阶段</button>
+				<button class="btn btn-success btn-sm" type="button" onclick="submit()">提交</button>
+			</div> 
+		</div>
+    </div>
+</div>
+
+<footer id="subfooter" class="clearfix">
+    <div class="container">
+        <div class="row">
+			<div class="col-md-6">
+                <p style="font-size:18px;"><span class="fa fa-map-marker text-color:#fff"></span> 联系我们</p>
+                <p>中南大学就业指导中心</p>
+                <p>地址：湖南省长沙市岳麓区中南大学校本部二办公楼二层</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+	//第一部分的答案
+	var url = document.URL;
+	var paramUrl = url.split('?')[1]; 
+	var param1 = paramUrl.split('&')[0].split('=')[1];
+	var param2 = paramUrl.split('&')[1].split('=')[1];
+	var part1 = {
+		subject_id : param2,
+		score : param1
+	};
+	console.log(part1);
+	//题目类别变量声明
+	var sub_class1 = '';
+	var sub_class2 = '';
+	var sub_class3 = '';
+	var sub_class4 = '';
+	var sub_class5 = '';
+	var sub_class6 = '';
+	var sub_class7 = '';
+	//题目集变量声明
+	var subjects1 = new Object;
+	var subjects2 = new Object;
+	var subjects3 = new Object;
+	var subjects4 = new Object;
+	var subjects5 = new Object;
+	var subjects6 = new Object;
+	var subjects7 = new Object;
+	//VUE变量声明
+	var vm1 = {};
+	var vm2 = {};
+	var vm3 = {};
+	var vm4 = {};
+	var vm5 = {};
+	var vm6 = {};
+	var vm7 = {};
+	//请求数据
+	$.ajax({  
+	    url:'getMainSubject', //请求路径 
+	    //data:"{}",  //请求数据为空
+	    async : false,
+	    success:function (data) { 
+	    	//将data里的对象依次存储在Vue的结构中
+	    	var dataObj = eval('('+data+')');
+	    	console.log(dataObj);
+	    	var part2 = dataObj.part2;
+	    	
+	    	sub_class1 = part2.step1.sub_class;
+	    	subjects1 = reSubjects(part2.step1.subjects);
+	    	
+	    	sub_class2 = part2.step2.sub_class;
+	    	subjects2 = reSubjects(part2.step2.subjects);
+	    	
+	    	sub_class3 = part2.step3.sub_class;
+	    	subjects3 = reSubjects(part2.step3.subjects);
+	    	
+	    	sub_class4 = part2.step4.sub_class;
+	    	subjects4 = reSubjects(part2.step4.subjects);
+	    	
+	    	sub_class5 = part2.step5.sub_class;
+	    	subjects5 = reSubjects(part2.step5.subjects);
+	    	
+	    	sub_class6 = part2.step6.sub_class;
+	    	subjects6 = reSubjects(part2.step6.subjects);
+	    	
+	    	sub_class7 = part2.step7.sub_class;
+	    	subjects7 = reSubjects(part2.step7.subjects);
+	    }
+	});
+	function reSubjects(subjects){
+		for(i = 0;i < subjects.length;i++){
+			subjects[i].score = 60;
+		}
+		//var reSubjects = JSON.stringify(subjects);
+		//console.log(reSubjects);
+		return subjects;
+	}
+	//console.log(subjects1);
+	//第一阶段vue
+	var vm1 = new Vue({
+		  el: '#step1',
+		  data: {
+			 sub_class : sub_class1,
+			 subjects : subjects1
+		  }
+		});
+	//第一阶段滑块
+	$(document).ready(function() {
+		$(".slider_1").each(function(index,dom){
+			$(dom).slider();
+			$(dom).on('slide', function(slideEvt) {
+				//console.log(dom);
+				vm1.$data.subjects[index].score = slideEvt.value;
+			});
+		})
+	});
+	
+	//第二阶段vue
+	var vm2 = new Vue({
+		  el: '#step2',
+		  data: {
+			 sub_class : sub_class2,
+			 subjects : subjects2
+		  }
+		});
+	//第二阶段滑块
+	$(document).ready(function() {
+		$(".slider_2").each(function(index,dom){
+			$(dom).slider();
+			$(dom).on('slide', function(slideEvt) {
+				//console.log(dom);
+				vm2.$data.subjects[index].score = slideEvt.value;
+			});
+		})
+	});
+	
+	//第三阶段vue
+	var vm3 = new Vue({
+		  el: '#step3',
+		  data: {
+			 sub_class : sub_class3,
+			 subjects : subjects3
+		  }
+		});
+	//第三阶段滑块
+	$(document).ready(function() {
+		$(".slider_3").each(function(index,dom){
+			$(dom).slider();
+			$(dom).on('slide', function(slideEvt) {
+				//console.log(dom);
+				vm3.$data.subjects[index].score = slideEvt.value;
+			});
+		})
+	});
+	
+	//第四阶段vue
+	var vm4 = new Vue({
+		  el: '#step4',
+		  data: {
+			 sub_class : sub_class4,
+			 subjects : subjects4
+		  }
+		});
+	//第四阶段滑块
+	$(document).ready(function() {
+		$(".slider_4").each(function(index,dom){
+			$(dom).slider();
+			$(dom).on('slide', function(slideEvt) {
+				//console.log(dom);
+				vm4.$data.subjects[index].score = slideEvt.value;
+			});
+		})
+	});
+	
+	//第五阶段vue
+	var vm5 = new Vue({
+		  el: '#step5',
+		  data: {
+			 sub_class : sub_class5,
+			 subjects : subjects5
+		  }
+		});
+	//第五阶段滑块
+	$(document).ready(function() {
+		$(".slider_5").each(function(index,dom){
+			$(dom).slider();
+			$(dom).on('slide', function(slideEvt) {
+				//console.log(dom);
+				vm5.$data.subjects[index].score = slideEvt.value;
+			});
+		})
+	});
+	
+	//第六阶段vue
+	var vm6 = new Vue({
+		  el: '#step6',
+		  data: {
+			 sub_class : sub_class6,
+			 subjects : subjects6
+		  }
+		});
+	//第一阶段滑块
+	$(document).ready(function() {
+		$(".slider_6").each(function(index,dom){
+			$(dom).slider();
+			$(dom).on('slide', function(slideEvt) {
+				//console.log(dom);
+				vm6.$data.subjects[index].score = slideEvt.value;
+			});
+		})
+	});
+	
+	//第七阶段vue
+	var vm7 = new Vue({
+		  el: '#step7',
+		  data: {
+			 sub_class : sub_class7,
+			 subjects : subjects7
+		  }
+		});
+	//第七阶段滑块
+	$(document).ready(function() {
+		$(".slider_7").each(function(index,dom){
+			$(dom).slider();
+			$(dom).on('slide', function(slideEvt) {
+				//console.log(dom);
+				vm7.$data.subjects[index].score = slideEvt.value;
+			});
+		})
+	});
+	
+	//上一阶段按钮事件
+	function previousStep(obj){
+		//console.log(obj);
+		var div = obj.parentElement.id;
+		var index = parseInt(div.charAt(div.length-1))-1;
+		console.log(index);
+		$('#'+div).hide();
+		$('#'+div.substring(0,div.length-1)+index).show();
+	}
+	//下一阶段按钮事件
+	function nextStep(obj){
+		//console.log(obj);
+		var div = obj.parentElement.id;
+		var index = parseInt(div.charAt(div.length-1))+1;
+		//console.log(index);
+		$('#'+div).hide();
+		$('#'+div.substring(0,div.length-1)+index).show();
+	}
+	$.base64.utf8encode = true;
+	//提交事件
+	function submit(){
+		var step1 ={
+				sub_class : vm1.$data.sub_class,
+				subjects : vm1.$data.subjects
+		};
+		var step2 ={
+				sub_class : vm2.$data.sub_class,
+				subjects : vm2.$data.subjects
+		};
+		var step3 ={
+				sub_class : vm3.$data.sub_class,
+				subjects : vm3.$data.subjects
+		};
+		var step4 ={
+				sub_class : vm4.$data.sub_class,
+				subjects : vm4.$data.subjects
+		};
+		var step5 ={
+				sub_class : vm5.$data.sub_class,
+				subjects : vm5.$data.subjects
+		};
+		var step6 ={
+				sub_class : vm6.$data.sub_class,
+				subjects : vm6.$data.subjects
+		};
+		var step7 ={
+				sub_class : vm7.$data.sub_class,
+				subjects : vm7.$data.subjects
+		};
+		var part2 = {
+				step1 : step1,
+				step2 : step2,
+				step3 : step3,
+				step4 : step4,
+				step5 : step5,
+				step6 : step6,
+				step7 : step7
+		}
+		console.log(part2);
+		$.ajax({
+			url : 'submitExam',
+			type : 'POST',
+			data : {part1:JSON.stringify(part1),part2:JSON.stringify(part2)},
+			success : function(data){
+				 console.log('data',data.result);
+				 //var results = eval('('+data+')');
+				 if(data != null){
+					 var results = data.result;
+					 window.sessionStorage.setItem("results", JSON.stringify(results));
+					 //console.log(window.sessionStorage.getItem('results'));
+					 //var resultStr = $.base64('encode',JSON.stringify(results));
+					 //var resultStr =JSON.stringify(results);
+					 //console.log('str',resultStr);
+					 //var url = escape("result.html?result="+results);
+					 location.href = "result.html";
+					 //location.href = "result.html?result="+resultStr;
+					 //console.log('-------------------------')
+					 //console.log('str',$.base64.atob(resultStr, true));
+				 }
+			}
+		});  
+	}
+</script>
+</body>
+</html>
